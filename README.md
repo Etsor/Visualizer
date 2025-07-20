@@ -3,9 +3,9 @@
 Visualization of several popular sorting algorithms using [raylib](https://www.raylib.com/)
 
 <p>
-<img src="res/github/insertion.png" width="300">
-<img src="res/github/selection.png" width="400">
-<img src="res/github/bubble.png" width="300">
+<img src="res/github/insertion.png" width="200">
+<img src="res/github/selection.png" width="200">
+<img src="res/github/bubble.png" width="200">
 </p>
  
 ## Supported Algorithms
