@@ -37,6 +37,6 @@ Run
 ./compile.sh
 ```
 
-<img src="res/github/insertion.gif" width="400">
-<img src="res/github/selection.gif" width="400">
-<img src="res/github/bubble.gif" width="400">
+<img src="res/github/insertion.png" width="400">
+<img src="res/github/selection.png" width="400">
+<img src="res/github/bubble.png" width="400">
