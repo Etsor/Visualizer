@@ -33,6 +33,8 @@ Visualization of several popular sorting algorithms using [raylib](https://www.r
 - GCC
 - [Raylib](https://github.com/raysan5/raylib)
 
+For customization you can edit ```src/constants.h``` as you like
+
 Run
  ```bat
 .\compile.bat
