@@ -2,6 +2,12 @@
 
 Visualization of several popular sorting algorithms using [raylib](https://www.raylib.com/)
 
+<p>
+<img src="res/github/insertion.png" width="300">
+<img src="res/github/selection.png" width="400">
+<img src="res/github/bubble.png" width="300">
+</p>
+ 
 ## Supported Algorithms
 
 - **Bubble Sort**
@@ -20,12 +26,13 @@ Visualization of several popular sorting algorithms using [raylib](https://www.r
 | `R`       | Reset / Regenerate array   |
 | `ESC`     | Exit program               |
 
-## Requirements
+## Build
+
+### Requirements
 
 - GCC
 - [Raylib](https://github.com/raysan5/raylib)
 
-### Build
 Run
  ```bat
 .\compile.bat
@@ -36,7 +43,3 @@ Run
 ```shell
 ./compile.sh
 ```
-
-<img src="res/github/insertion.png" width="400">
-<img src="res/github/selection.png" width="400">
-<img src="res/github/bubble.png" width="400">
