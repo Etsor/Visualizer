@@ -56,12 +56,12 @@ int main(void)
             for (size_t k = 0; k < EL_AMOUNT; ++k) {
                 Color color = 
                     (k == state.i || k == state.j) 
-                    ? ACTIVE_COLOR : EL_COLOR; 
+                    ? ACTIVE_COLOR : EL_TOP_COLOR; 
                 
                 DrawRectangleGradientV(
                     k * EL_WIDTH, 0, 
                     EL_WIDTH, arr[k], 
-                    color, BLACK
+                    color, EL_BOTTOM_COLOR
                 );
             }
 

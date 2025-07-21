@@ -8,10 +8,11 @@
 
 #define EL_AMOUNT       1600    // amount of elements in array
 #define EL_WIDTH        1       // width of 1 element in visualization (pixels) 
-#define EL_COLOR        BLANK   // top color of element in visualization (BLANK - transparent)
+#define EL_TOP_COLOR    BLANK   // top color of element in visualization (BLANK - transparent)
+#define EL_BOTTOM_COLOR BLACK   // bottom color of element in visualization
 #define ACTIVE_COLOR    WHITE   // color of current active element
 
-#define SWAPS_PER_FRAME 15      // amount of swaps in array while sorting per frame
+#define SWAPS_PER_FRAME 15      // amount of swaps in array per frame
 
 #define MAX_SOUNDS      4       // max amount of sounds that can play at the same time  
 
