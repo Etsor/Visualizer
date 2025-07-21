@@ -37,7 +37,7 @@ For customization you can edit ```src/constants.h``` as you like
 
 Run
  ```bat
-.\compile.bat
+./compile.bat
 ```
 
  or
