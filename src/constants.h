@@ -15,4 +15,11 @@
 
 #define MAX_SOUNDS      4       // max amount of sounds that can play at the same time  
 
+#define HELP_TEXT       "1.  Bubble Sort\
+                        \n2. Insertion Sort\
+                        \n3. Selection Sort\
+                        \n4. Bogo Sort\
+                        \nR. Reload\
+                        \nESC. Exit"
+
 #endif

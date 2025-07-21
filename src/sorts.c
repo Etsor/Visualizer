@@ -9,7 +9,10 @@ static bool is_sorted(int16_t* arr, size_t n) {
     return true;
 }
 
-void bogo_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound) {
+void bogo_sort(SortState* state, int* swaps_done, 
+               bool* sound_played, Sound* sound_array, 
+               int* current_sound) 
+{
     if (is_sorted(state->arr, EL_AMOUNT)) {
         state->sorted = true;
         return;
@@ -29,12 +32,16 @@ void bogo_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sou
     (*swaps_done)++;
 }
 
-void bubble_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound) {
+void bubble_sort(SortState* state, int* swaps_done, 
+                 bool* sound_played, Sound* sound_array, 
+                 int* current_sound) 
+{
     if (state->j < EL_AMOUNT) {
         if (state->i + 1 < EL_AMOUNT) {
             if (state->arr[state->i] > state->arr[state->i + 1]) {
                 if (!*sound_played) {
-                    SetSoundPitch(sound_array[*current_sound], (float)state->arr[state->i] / 300.0f);
+                    SetSoundPitch(sound_array[*current_sound], 
+                                 (float)state->arr[state->i] / 300.0f);
                     PlaySound(sound_array[*current_sound]);
                     *current_sound = (*current_sound + 1) % MAX_SOUNDS;
                     *sound_played = true;
@@ -56,7 +63,10 @@ void bubble_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* s
     } else state->sorted = true;
 }
 
-void selection_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound) {
+void selection_sort(SortState* state, int* swaps_done, 
+                    bool* sound_played, Sound* sound_array, 
+                    int* current_sound) 
+{
     if (state->i < EL_AMOUNT - 1) {
         size_t min_idx = state->i;
         for (size_t k = state->i + 1; k < EL_AMOUNT; k++) {
@@ -67,7 +77,8 @@ void selection_sort(SortState* state, int* swaps_done, bool* sound_played, Sound
         
         if (min_idx != state->i) {
             if (!*sound_played) {
-                SetSoundPitch(sound_array[*current_sound], (float)state->arr[state->i] / 300.0f);
+                SetSoundPitch(sound_array[*current_sound], 
+                             (float)state->arr[state->i] / 300.0f);
                 PlaySound(sound_array[*current_sound]);
                 *current_sound = (*current_sound + 1) % MAX_SOUNDS;
                 *sound_played = true;
@@ -84,11 +95,15 @@ void selection_sort(SortState* state, int* swaps_done, bool* sound_played, Sound
     } else state->sorted = true;
 }
 
-void insertion_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound) {
+void insertion_sort(SortState* state, int* swaps_done, 
+                    bool* sound_played, Sound* sound_array, 
+                    int* current_sound) 
+{
     if (state->i < EL_AMOUNT) {
         if (state->j > 0 && state->arr[state->j - 1] > state->arr[state->j]) {
             if (!*sound_played) {
-                SetSoundPitch(sound_array[*current_sound], (float)state->arr[state->j] / 300.0f);
+                SetSoundPitch(sound_array[*current_sound], 
+                             (float)state->arr[state->j] / 300.0f);
                 PlaySound(sound_array[*current_sound]);
                 *current_sound = (*current_sound + 1) % MAX_SOUNDS;
                 *sound_played = true;

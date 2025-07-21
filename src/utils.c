@@ -4,7 +4,8 @@
 #include "constants.h"
 
 long long rand_num(long long start, long long end) {
-    return start + (long long)((double)rand() / (RAND_MAX + 1.0) * (end - start + 1));
+    return start + (long long)((double)rand() / 
+                   (RAND_MAX + 1.0) * (end - start + 1));
 }
 
 int16_t* generate_array(uint16_t el_amount) {

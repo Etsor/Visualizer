@@ -8,15 +8,19 @@
 #include "sorts.h"
 #include "utils.h"
 
-int main(void) {
+int main(void) 
+{
     srand((unsigned)time(NULL));
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Visualizer");
     SetTargetFPS(144);
 
 
-    Shader bloom = LoadShader(0, TextFormat("res/shaders/bloom.fs", GLSL_VERSION));
-    RenderTexture2D target = LoadRenderTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
+    Shader bloom = 
+        LoadShader(0, TextFormat("res/shaders/bloom.fs", GLSL_VERSION));
+    
+    RenderTexture2D target = 
+        LoadRenderTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
     InitAudioDevice();
@@ -39,8 +43,7 @@ int main(void) {
         .sort_name = "Bubble Sort"
     };
 
-    while (!WindowShouldClose()) 
-    {    
+    while (!WindowShouldClose()) {    
         BeginTextureMode(target);
         
             ClearBackground(BLACK);
@@ -51,7 +54,9 @@ int main(void) {
             );
 
             for (size_t k = 0; k < EL_AMOUNT; ++k) {
-                Color color = (k == state.i || k == state.j) ? ACTIVE_COLOR : EL_COLOR; 
+                Color color = 
+                    (k == state.i || k == state.j) 
+                    ? ACTIVE_COLOR : EL_COLOR; 
                 
                 DrawRectangleGradientV(
                     k * EL_WIDTH, 0, 
@@ -172,14 +177,8 @@ int main(void) {
             
             EndShaderMode();
             
-            DrawText(
-                "1.  Bubble Sort\
-                \n2. Insertion Sort\
-                \n3. Selection Sort\
-                \n4. Bogo Sort\
-                \nR. Reload\
-                \nESC. Exit", 
-                
+            DrawText( 
+                HELP_TEXT,
                 SCREEN_WIDTH - 190, 10, 
                 20, 
                 WHITE

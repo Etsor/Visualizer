@@ -24,9 +24,20 @@ typedef struct {
 
 } SortState;
 
-void bubble_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound);
-void selection_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound);
-void insertion_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound);
-void bogo_sort(SortState* state, int* swaps_done, bool* sound_played, Sound* sound_array, int* current_sound);
+void bubble_sort(SortState* state, int* swaps_done, 
+                 bool* sound_played, Sound* sound_array, 
+                 int* current_sound);
+
+void selection_sort(SortState* state, int* swaps_done, 
+                    bool* sound_played, Sound* sound_array, 
+                    int* current_sound);
+
+void insertion_sort(SortState* state, int* swaps_done, 
+                    bool* sound_played, Sound* sound_array, 
+                    int* current_sound);
+
+void bogo_sort(SortState* state, int* swaps_done, 
+               bool* sound_played, Sound* sound_array, 
+               int* current_sound);
 
 #endif
