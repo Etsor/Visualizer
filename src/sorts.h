@@ -18,6 +18,8 @@ typedef struct {
     size_t i;
     size_t j;
     bool sorted;
+    bool paused;
+    int swaps_per_frame;
     int16_t* arr;
     SortType current_sort;
     const char* sort_name;

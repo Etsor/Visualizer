@@ -38,6 +38,8 @@ int main(void)
         .i = 0,
         .j = 0,
         .sorted = false,
+        .paused = false,
+        .swaps_per_frame = SWAPS_PER_FRAME,
         .arr = arr,
         .current_sort = BUBBLE_SORT,
         .sort_name = "Bubble Sort"
@@ -70,38 +72,50 @@ int main(void)
             
             if (IsKeyPressed(KEY_ONE)) {
                 state = (SortState) {
-                    0, 0, 
-                    false, 
-                    arr, 
-                    BUBBLE_SORT, 
-                    "Bubble Sort"
+                    .i = 0,
+                    .j = 0,
+                    .sorted = false,
+                    .paused = false,
+                    .swaps_per_frame = SWAPS_PER_FRAME,
+                    .arr = arr,
+                    .current_sort = BUBBLE_SORT,
+                    .sort_name = "Bubble Sort"
                 };
             }
             if (IsKeyPressed(KEY_TWO)) {
                 state = (SortState) {
-                    0, 0, 
-                    false, 
-                    arr, 
-                    INSERTION_SORT, 
-                    "Insertion Sort"
+                    .i = 0,
+                    .j = 0,
+                    .sorted = false,
+                    .paused = false,
+                    .swaps_per_frame = SWAPS_PER_FRAME,
+                    .arr = arr,
+                    .current_sort = INSERTION_SORT,
+                    .sort_name = "Insertion Sort"
                 };
             }
             if (IsKeyPressed(KEY_THREE)) {
                 state = (SortState) {
-                    0, 0, 
-                    false, 
-                    arr, 
-                    SELECTION_SORT, 
-                    "Selection Sort"
+                    .i = 0,
+                    .j = 0,
+                    .sorted = false,
+                    .paused = false,
+                    .swaps_per_frame = SWAPS_PER_FRAME,
+                    .arr = arr,
+                    .current_sort = SELECTION_SORT,
+                    .sort_name = "Selection Sort"
                 };
             }
             if (IsKeyPressed(KEY_FOUR)) {
                 state = (SortState) {
-                    0, 0, 
-                    false, 
-                    arr, 
-                    BOGO_SORT, 
-                    "Bogo Sort"
+                    .i = 0,
+                    .j = 0,
+                    .sorted = false,
+                    .paused = false,
+                    .swaps_per_frame = SWAPS_PER_FRAME,
+                    .arr = arr,
+                    .current_sort = BOGO_SORT,
+                    .sort_name = "Bogo Sort"
                 };
             }
             
@@ -114,7 +128,26 @@ int main(void)
                 state.j = 0;
             }
 
-            while (!state.sorted && swaps_done < SWAPS_PER_FRAME) {
+            if (IsKeyPressed(KEY_SPACE)) {
+                state.paused = !state.paused;
+            }
+
+            if (IsKeyPressed(KEY_UP)) {
+                state.swaps_per_frame = MIN(
+                    state.swaps_per_frame + SPEED_CHANGE_STEP, 
+                    MAX_SWAPS_PER_FRAME
+                );
+            }
+
+            if (IsKeyPressed(KEY_DOWN)) {
+                state.swaps_per_frame = MAX(
+                    state.swaps_per_frame - SPEED_CHANGE_STEP, 
+                    MIN_SWAPS_PER_FRAME
+                );
+            }
+
+            while (!state.sorted && !state.paused && 
+                   swaps_done < state.swaps_per_frame) {
                 switch (state.current_sort) {
                     case BUBBLE_SORT:
                         bubble_sort(
@@ -185,6 +218,14 @@ int main(void)
             );
             
             DrawText(state.sort_name, 10, 10, 20, WHITE);
+            DrawText(
+                TextFormat("Speed: %d", state.swaps_per_frame),
+                10, 40, 20, WHITE
+            );
+            DrawText(
+                state.paused ? "PAUSED" : "",
+                10, 70, 20, RED
+            );
         
         EndDrawing();
     }
