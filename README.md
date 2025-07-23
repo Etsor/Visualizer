@@ -24,6 +24,8 @@ Visualization of several popular sorting algorithms using [raylib](https://www.r
 | `3`       | Selection Sort             |
 | `4`       | Bogo Sort                  |
 | `R`       | Reset / Regenerate array   |
+| `SPACE`   | Pause                      |
+| `UP/DOWN` | Speed                      |
 | `ESC`     | Exit program               |
 
 ## Build
@@ -37,7 +39,7 @@ For customization you can edit ```src/constants.h``` as you like
 
 Run
  ```bat
-.\compile.bat
+./compile.bat
 ```
 
  or
