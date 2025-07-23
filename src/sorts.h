@@ -26,6 +26,20 @@ typedef struct {
 
 } SortState;
 
+inline SortState sort_state(SortType type, const char* name, int* arr) {
+    return (SortState) {
+        .i = 0,
+        .j = 0,
+        .sorted = false,
+        .paused = false,
+        .swaps_per_frame = SWAPS_PER_FRAME,
+        .arr = arr,
+        .current_sort = type,
+        .sort_name = name
+    };
+}
+
+
 void bubble_sort(SortState* state, int* swaps_done, 
                  bool* sound_played, Sound* sound_array, 
                  int* current_sound);

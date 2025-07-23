@@ -27,23 +27,13 @@ int main(void)
     Sound sound_array[MAX_SOUNDS] = { 0 };
     sound_array[0] = LoadSound("res/sound.wav");
     SetSoundVolume(sound_array[0], 0.1f);
-    for (size_t s = 1; s < MAX_SOUNDS; ++s) {
+    for (size_t s = 1; s < MAX_SOUNDS; ++s)
         sound_array[s] = LoadSoundAlias(sound_array[0]);
-    }
     int current_sound = 0;
 
 
     int16_t* arr = generate_array(EL_AMOUNT);
-    SortState state = {
-        .i = 0,
-        .j = 0,
-        .sorted = false,
-        .paused = false,
-        .swaps_per_frame = SWAPS_PER_FRAME,
-        .arr = arr,
-        .current_sort = BUBBLE_SORT,
-        .sort_name = "Bubble Sort"
-    };
+    SortState state = sort_state(BUBBLE_SORT, "Bubble Sort", arr);
 
     while (!WindowShouldClose()) {    
         BeginTextureMode(target);
@@ -70,67 +60,17 @@ int main(void)
             int swaps_done = 0;
             bool sound_played = false;
             
-            if (IsKeyPressed(KEY_ONE)) {
-                state = (SortState) {
-                    .i = 0,
-                    .j = 0,
-                    .sorted = false,
-                    .paused = false,
-                    .swaps_per_frame = SWAPS_PER_FRAME,
-                    .arr = arr,
-                    .current_sort = BUBBLE_SORT,
-                    .sort_name = "Bubble Sort"
-                };
-            }
-            if (IsKeyPressed(KEY_TWO)) {
-                state = (SortState) {
-                    .i = 0,
-                    .j = 0,
-                    .sorted = false,
-                    .paused = false,
-                    .swaps_per_frame = SWAPS_PER_FRAME,
-                    .arr = arr,
-                    .current_sort = INSERTION_SORT,
-                    .sort_name = "Insertion Sort"
-                };
-            }
-            if (IsKeyPressed(KEY_THREE)) {
-                state = (SortState) {
-                    .i = 0,
-                    .j = 0,
-                    .sorted = false,
-                    .paused = false,
-                    .swaps_per_frame = SWAPS_PER_FRAME,
-                    .arr = arr,
-                    .current_sort = SELECTION_SORT,
-                    .sort_name = "Selection Sort"
-                };
-            }
-            if (IsKeyPressed(KEY_FOUR)) {
-                state = (SortState) {
-                    .i = 0,
-                    .j = 0,
-                    .sorted = false,
-                    .paused = false,
-                    .swaps_per_frame = SWAPS_PER_FRAME,
-                    .arr = arr,
-                    .current_sort = BOGO_SORT,
-                    .sort_name = "Bogo Sort"
-                };
-            }
-            
-            if (IsKeyPressed(KEY_R)) {
-                free(arr);
-                arr = generate_array(EL_AMOUNT);
-                state.arr = arr;
-                state.sorted = false;
-                state.i = 0;
-                state.j = 0;
-            }
+            if (IsKeyPressed(KEY_ONE)) 
+                sort_state(BUBBLE_SORT, "Bubble Sort", arr);
+            if (IsKeyPressed(KEY_TWO)) 
+                sort_state(INSERTION_SORT, "Insertion Sort", arr);
+            if (IsKeyPressed(KEY_THREE)) 
+                sort_state(SELECTION_SORT, "Selection Sort", arr);
+            if (IsKeyPressed(KEY_FOUR)) 
+                sort_state(BOGO_SORT, "Bogo Sort", arr);
 
-            if (IsKeyPressed(KEY_SPACE)) {
+            if (IsKeyPressed(KEY_SPACE)) 
                 state.paused = !state.paused;
-            }
 
             if (IsKeyPressed(KEY_UP)) {
                 state.swaps_per_frame = MIN(
@@ -146,8 +86,18 @@ int main(void)
                 );
             }
 
+            if (IsKeyPressed(KEY_R)) {
+                free(arr);
+                arr = generate_array(EL_AMOUNT);
+                state.arr = arr;
+                state.sorted = false;
+                state.i = 0;
+                state.j = 0;
+            }
+
             while (!state.sorted && !state.paused && 
                    swaps_done < state.swaps_per_frame) {
+                
                 switch (state.current_sort) {
                     case BUBBLE_SORT:
                         bubble_sort(
@@ -217,14 +167,25 @@ int main(void)
                 WHITE
             );
             
-            DrawText(state.sort_name, 10, 10, 20, WHITE);
+            DrawText(
+                state.sort_name, 
+                10, 10, 
+                20, 
+                WHITE
+            );
+            
             DrawText(
                 TextFormat("Speed: %d", state.swaps_per_frame),
-                10, 40, 20, WHITE
+                10, 40, 
+                20, 
+                WHITE
             );
+            
             DrawText(
                 state.paused ? "PAUSED" : "",
-                10, 70, 20, RED
+                10, 70, 
+                20, 
+                RED
             );
         
         EndDrawing();
@@ -235,9 +196,8 @@ int main(void)
     UnloadShader(bloom);
     UnloadRenderTexture(target); 
 
-    for (int i = 1; i < MAX_SOUNDS; i++) {
+    for (int i = 1; i < MAX_SOUNDS; i++) 
         UnloadSoundAlias(sound_array[i]);
-    }
     UnloadSound(sound_array[0]);
     CloseAudioDevice();
     
@@ -245,3 +205,5 @@ int main(void)
 
     return 0;
 }
+
+
